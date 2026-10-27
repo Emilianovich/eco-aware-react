@@ -1,54 +1,33 @@
-# sv
+# Eco Aware
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Proyecto vacío con React, TypeScript y TanStack Router y Tailwind CSS sobre Vite+.
 
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
+## Desarrollo
 
 ```sh
-# create a new project
-npx sv create my-app
+vp install
+vp run dev
 ```
 
-To recreate this project with the same configuration:
+La ruta inicial `/` está vacía y se define en `src/routes/index.tsx`.
+Añade archivos en `src/routes/` para crear rutas. El plugin genera
+`src/routeTree.gen.ts` al ejecutar el servidor o compilar; no lo edites a mano.
+Los estilos globales y Tailwind se cargan desde `src/styles.css`.
+
+## Validación
 
 ```sh
-# recreate this project
-bun x sv@1.1.1 create --template minimal --types ts --add tailwindcss="plugins:typography" sveltekit-adapter="adapter:cloudflare+cfTarget:workers" --install bun eco-aware
+vp check
+vp test
+vp run build
 ```
 
-## Adding features
+Todavía no hay pruebas; el comando de tests permite una suite vacía.
 
-Add features to your project with `sv add`:
+## Cloudflare
 
-```sh
-npx sv add
-```
+`vp run preview` compila y sirve la aplicación con Wrangler.
+`vp run deploy` compila y publica los archivos de `build/` en Cloudflare.
 
-For example, to add Tailwind CSS:
-
-```sh
-npx sv add tailwindcss
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
+El lint incluye reglas de React, hooks y accesibilidad JSX. React Compiler está
+explícitamente desactivado en `vite.config.ts`.
